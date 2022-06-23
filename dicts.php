@@ -391,5 +391,33 @@ class BaseDicts
             "Lanna_word" => "บ่าว",
             "Thai_word" => "หนุ่ม"
         ],
+        [
+            "Lanna_word" => "ใจ๋ขึ้น",
+            "Thai_word" => "อารมณ์เสีย"
+        ],
+        [
+            "Lanna_word" => "ใจ๋ฮ้อน",
+            "Thai_word" => "ใจร้อน"
+        ],
+        [
+            "Lanna_word" => "ฟั่ง",
+            "Thai_word" => "รีบ"
+        ],
+        [
+            "Lanna_word" => "จะไปฟั่ง",
+            "Thai_word" => "อย่ารีบ"
+        ],
+        [
+            "Lanna_word" => "เฮือน",
+            "Thai_word" => "บ้าน"
+        ],
+        [
+            "Lanna_word" => "โฮงยา",
+            "Thai_word" => "โรงพยาบาล"
+        ],
+        [
+            "Lanna_word" => "ถุงตี๋น",
+            "Thai_word" => "ถุงเท้า"
+        ],
     ];
 }

@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="/js.cookie.min.js"></script>
     <link rel="stylesheet" href="/style.css">
 
     <title>🤭 เกมทายศัพท์ภาษาเหนือ</title>
@@ -42,8 +41,10 @@
                         </span>
                     </div>
 
-                    <div class="text-center">
-                        <small><a href="javascript: void(0)" onclick="checkUserScore()">คะแนนของฉัน</a></small>
+                    <div class="text-center mt-3">
+                        <span><a class="badge badge-primary" href="javascript: void(0)" onclick="checkUserScore()">💯 คะแนนของฉัน</a></small>
+                        <span><a class="badge badge-warning" href="javascript: void(0)" onclick="skipQuestion()">👉 ข้ามคำถาม (เสีย 5 คะแนน)</a></small>
+                        <span><a class="badge badge-dark" href="javascript: void(0)" onclick="toggleThemeColor()">🎨 เปลี่ยนสีหน้าเว็บ</a></small>
 
                     </div>
                 </div>

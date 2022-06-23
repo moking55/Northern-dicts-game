@@ -1,10 +1,11 @@
 let answer, question = "";
 const userScore = window.localStorage;
 
-if (userScore.getItem("score") === null || userScore.getItem("correct") === null || userScore.getItem("incorrect") === null) {
+if (userScore.getItem("score") === null || userScore.getItem("correct") === null || userScore.getItem("incorrect") === null || userScore.getItem("themeColor") === null) {
     userScore.setItem('score', 0);
     userScore.setItem('correct', 0);
     userScore.setItem('incorrect', 0);
+    userScore.setItem('themeColor', 'light');
 }
 
 const randsLoading = [
@@ -13,7 +14,18 @@ const randsLoading = [
     "<span>😏</span> แอ่นแล่ะ แอ่นแล่ะ!",
     "<span>😲</span> โป๊ดโท ทำโม สังโค",
     "<span>😁</span> อ้ายมากี่คนครับ?",
-    "<span>😁</span> อ้ายมากี่คนครับ?",
+    "<span>😁</span> นุ่งผ้าปุ้ดไปแอ่วปอยหลวง?",
+    "<span>😣</span> โดนตี๋จ๋นหัวโนปู้ดปกหล้ก",
+    "<span>😡</span> ก้าเดียวจะโดนลูกกุยแล้วอู่อย่างอี้",
+    "<span>🎶</span> แอ่วปอยหลวงบ้านวังสะแกง..",
+    "<span>😋</span> กิ๋นส้าผักวันก่อลำดีแต๊",
+    "<span>😋</span> กิ๋นเข้ากับน้ำพริกอ่องล้าแต๊",
+    "<span>🍚</span> ของกิ๋นบ้านเฮาเลือกเอาเต๊อะนาย",
+    "<span>😖</span> นั่งสั่นหย่องๆ",
+    "<span>😥</span> เปิดใจ๋ก่เจ๋บปวด เปิดขวดก่เสี้ยงตังค์",
+    "<span>😉</span> ฮักเปิ้นก่อ..??",
+    "<span>😫</span> ฮานี้บ่าเฮ้ย!!",
+    "<span>👴</span> อุ๊ยคำคนแก่ ท่าทางใจดี",
 ];
 function getRandWord() {
     $.get("/wordList.php?params=random",
@@ -45,9 +57,37 @@ function checkUserScore() {
     })
 }
 
+function skipQuestion() {
+    const totalUserScore = parseInt(userScore.getItem("score"));
+    if (totalUserScore >= 5) {
+        $("#guessWord").html(randsLoading[Math.floor(Math.random() * randsLoading.length)]);
+        userScore.setItem('score', totalUserScore - 5);
+        getRandWord();
+    } else {
+        Swal.fire({
+            icon: 'error',
+            text: 'คุณมีคะแนนไม่เพียงพอสำหรับข้ามคำถาม'
+        })
+    }
+}
+
+function toggleThemeColor() {
+    const element = $('body');
+    if (userScore.getItem("themeColor") === "light") {
+        userScore.setItem("themeColor", "dark");
+        element.addClass("dark-mode");
+    } else {
+        userScore.setItem("themeColor", "light");
+        element.removeClass("dark-mode");
+    }
+}
+
 $(document).ready(function () {
     getRandWord();
-
+    const element = $('body');
+    if (userScore.getItem("themeColor") == "dark") {
+        element.addClass("dark-mode");
+    }
 });
 
 $("#answerForm").submit(function (e) {
@@ -70,7 +110,7 @@ $("#answerForm").submit(function (e) {
             icon: "error",
             html: "<p class='m-0'>ดูเหมือนจะยังบ่าใจ้เตื่อ... ลองผ่อแหมกำ!</p><small>( ดูเหมือนจะยังไม่ใช่นะ... ลองดูอีกครั้งสิ! )</small>",
             showDenyButton: true,
-            confirmButtonText: 'ไปคำอื่น',
+            confirmButtonText: 'คำถัดไป',
             denyButtonText: `ดูเฉลย`,
         }).then(function (res) {
             if (res.isDenied) {

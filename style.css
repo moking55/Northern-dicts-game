@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@200;300;400&display=swap');
 
 html, body {
+  transition: background-color 0.3s ease;
   font-family: 'Kanit', sans-serif;
 }
 
@@ -32,4 +33,10 @@ html, body {
   .lannaWord {
     font-size: 90px;
   }
+}
+
+.dark-mode {
+  transition: background-color 0.3s ease;
+  background-color: #2C2F33;
+  color: white;
 }
